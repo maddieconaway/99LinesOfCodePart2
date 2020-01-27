@@ -1,76 +1,40 @@
-// my name, number of states, and 9
-var name = "Maddie Conaway";
-const numofstates = 50;
-var nbr = 5+4;
-var veggieArray = ["green beans","tomato", "asperagus", "beans"];
-var memberList = [
-    {name: "Maddie", age: 40},
-    {name: "David", age: 17},
-    {name: "Candace", age: 20},
-    {name: "Savvy", age: 24},
-    {name: "Levi", age: 30}
-];
+var nameArray = ["Maddie", "Josie", "Alex", "Alden", "Hanna"];
 
-console.log(sayHello());
+let btn = document.getElementById('btn');
+btn.addEventListener('click', sing);
 
-listVeggies();
-
-var j = 0;
-while (j < 5){
-    checkAge(memberList[j].name, memberList[j].age);
-    j++;
-}
-
-var k = getLength("Hello World");
-if (k % 2 == 0) {
-    console.log("The world is nice and even!");
-} else {
-    console.log("The world is an odd place!")
-}
-
-var nameArray = ["Maddie","Josie","Alex","Alden","Hanna"];
-
-var nameLoop;
-var lyricLoop;
-for (nameLoop = 0; nameLoop < nameArray.length; nameLoop++) {
-    console.log(nameArray[nameLoop].toUpperCase() + ":");
-    for (lyricLoop = 99; lyricLoop > 0; lyricLoop--) {
-        console.log( lyricFormat(lyricLoop) + " in the file, " + lyricFormat(lyricLoop) + "; " +
-            nameArray[nameLoop] + " strikes one out, clears it all out, " +
-            lyricFormat(lyricLoop-1) + " in the file");
+function sing() {
+    var nameLoop;
+    var lyricLoop;
+    for (nameLoop = 0; nameLoop < nameArray.length; nameLoop++) {
+        let div = document.createElement('div');
+        div.className = 'friend';
+        let h3 = document.createElement('h3');
+        h3.textContent = nameArray[nameLoop];
+        div.appendChild(h3);
+        for (lyricLoop = 99; lyricLoop > 0; lyricLoop--) {
+            let lyricString = '';
+            let p = document.createElement('p');
+            lyricString = lyricString + lyricFormat(lyricLoop) + " in the file, " + lyricFormat(lyricLoop) + "; " +
+                nameArray[nameLoop] + " strikes one out, clears it all out, " +
+                lyricFormat(lyricLoop - 1) + " in the file. ";
+            p.textContent = lyricString;
+            div.appendChild(p);
+        }
+        document.body.appendChild(div);
     }
 }
 
-function lyricFormat ( lyricNbr) {
+function lyricFormat(lyricNbr) {
     var lineStr;
     const ofCode = "of code";
 
-    if (lyricNbr == 1){
-        lineStr=" line ";
+    if (lyricNbr == 1) {
+        lineStr = " line ";
     } else {
-        lineStr=" lines ";
+        lineStr = " lines ";
     }
     return lyricNbr + lineStr + ofCode;
-    
+
 }
 
-function sayHello () {
-    return "Hello World!";
-}
-
-function checkAge (name, age) {
-    if (age<21) {
-        console.log("Sorry " + name + ", you aren't old enough to view this page!");
-    }
-}
-
-function listVeggies () {
-    var i;
-    for (i = 0; i < veggieArray.length; i++) {
-        console.log(veggieArray[i]);
-    }
-}
-
-function getLength( inStr ) {
-    return inStr.length;
-}
